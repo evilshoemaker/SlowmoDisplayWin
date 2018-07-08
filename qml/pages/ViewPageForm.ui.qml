@@ -1,5 +1,5 @@
-import QtQuick 2.9
-import QtMultimedia 5.9
+import QtQuick 2.7
+import QtMultimedia 5.7
 
 Item {
     id: root

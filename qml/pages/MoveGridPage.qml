@@ -1,7 +1,7 @@
-import QtQuick 2.9
+import QtQuick 2.7
 
 MoveGridPageForm {
-    /*videoPlayer1x1.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
+    videoPlayer1x1.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
     videoPlayer1x2.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
     videoPlayer1x3.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
 
@@ -10,12 +10,12 @@ MoveGridPageForm {
 
     videoPlayer3x1.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
     videoPlayer3x2.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
-    videoPlayer3x3.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"*/
+    videoPlayer3x3.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
 
     Component.onCompleted: {
         centralImage.source = settings.splashScreen();
 
-        videoPlayer1x1.backgroundImage = settings.splashScreen();
+        /*videoPlayer1x1.backgroundImage = settings.splashScreen();
         videoPlayer1x2.backgroundImage = settings.splashScreen();
         videoPlayer1x3.backgroundImage = settings.splashScreen();
 
@@ -37,6 +37,6 @@ MoveGridPageForm {
         videoGridViewer.addMediaPlayer(videoPlayer3x2);
         videoGridViewer.addMediaPlayer(videoPlayer3x3);
 
-        videoGridViewer.init();
+        videoGridViewer.init();*/
     }
 }

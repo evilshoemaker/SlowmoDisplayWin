@@ -1,5 +1,5 @@
 import QtQuick 2.4
-import QtMultimedia 5.9
+import QtMultimedia 5.7
 
 ViewPageForm {
     id: root

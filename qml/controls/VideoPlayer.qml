@@ -1,5 +1,5 @@
-import QtQuick 2.9
-import QtMultimedia 5.9
+import QtQuick 2.7
+import QtMultimedia 5.8
 import QtQuick.Layouts 1.3
 import QtQuick.Dialogs 1.2
 
@@ -7,12 +7,12 @@ Item {
     id: root
 
     property alias videoSource: player.source
-    property alias backgroundImage: image.source
+    //property alias backgroundImage: image.source
 
     //implicitWidth: 600
     //implicitHeight: 380
 
-    Rectangle {
+    /*Rectangle {
         anchors.fill: parent
         color: "#000"
     }
@@ -22,15 +22,15 @@ Item {
         source: root.backgroundImage
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
-    }
+    }*/
 
     MediaPlayer {
         id: player
         source: root.videoSource
-        //autoLoad: true
+        autoLoad: true
         autoPlay: true
         muted: true
-        //loops: MediaPlayer.Infinite
+        loops: MediaPlayer.Infinite
 
         /*onPlaying: {
             root.playing = true;

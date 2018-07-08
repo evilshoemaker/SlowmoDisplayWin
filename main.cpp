@@ -2,6 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+#include <QQuickWindow>
+
 #include <QDebug>
 
 #include <core/Settings.h>
@@ -16,7 +18,8 @@ void registerType()
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    //QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
+    //QQuickWindow::setSceneGraphBackend(QSGRendererInterface::Software);
 
     QGuiApplication app(argc, argv);
 
