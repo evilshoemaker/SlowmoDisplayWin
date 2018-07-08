@@ -1,11 +1,12 @@
 #ifndef VARIABLES_H
 #define VARIABLES_H
 
+#include <QtCore>
 
 class Variables
 {
 public:
-    Variables();
+    static QString settingsFilePath();
 };
 
 #endif // VARIABLES_H

@@ -1,25 +1,28 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 
+import "pages"
+
 ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Tabs")
+    title: qsTr("Slow")
 
     SwipeView {
         id: swipeView
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
-        Page1Form {
+        MoveGridPage {
+
         }
 
         Page2Form {
         }
     }
 
-    footer: TabBar {
+    /*footer: TabBar {
         id: tabBar
         currentIndex: swipeView.currentIndex
 
@@ -29,5 +32,5 @@ ApplicationWindow {
         TabButton {
             text: qsTr("Page 2")
         }
-    }
+    }*/
 }

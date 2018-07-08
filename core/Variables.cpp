@@ -1,6 +1,6 @@
 #include "Variables.h"
 
-Variables::Variables()
+QString Variables::settingsFilePath()
 {
-
+    return QDir::toNativeSeparators(qApp->applicationDirPath() + "/config.ini");
 }

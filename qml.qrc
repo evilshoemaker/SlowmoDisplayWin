@@ -1,9 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>Page1Form.ui.qml</file>
-        <file>Page2Form.ui.qml</file>
-        <file>main.qml</file>
-        <file>qtquickcontrols2.conf</file>
+        <file>qml/main.qml</file>
+        <file>qml/Page1Form.ui.qml</file>
+        <file>qml/Page2Form.ui.qml</file>
+        <file>qml/qtquickcontrols2.conf</file>
+        <file>qml/pages/MoveGridPage.qml</file>
+        <file>qml/pages/MoveGridPageForm.ui.qml</file>
+        <file>qml/controls/VideoPlayer.qml</file>
     </qresource>
 </RCC>
