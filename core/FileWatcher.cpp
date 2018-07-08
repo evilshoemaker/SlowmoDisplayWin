@@ -53,7 +53,8 @@ void FileWatcher::onFileChanged(const QString &path)
 
 void FileWatcher::onDirectoryChanged(const QString &path)
 {
-    QtConcurrent::run(QThreadPool::globalInstance(), this, &FileWatcher::directoryCheck, path);
+    directoryCheck(path);
+    //QtConcurrent::run(QThreadPool::globalInstance(), this, &FileWatcher::directoryCheck, path);
 }
 
 void FileWatcher::directoryCheck(const QString &path)

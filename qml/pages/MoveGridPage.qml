@@ -1,8 +1,8 @@
-import QtQuick 2.4
+import QtQuick 2.9
 
 MoveGridPageForm {
-    /*videoPlayer1x1.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
-    videoPlayer1x2.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
+    videoPlayer1x1.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
+    /*videoPlayer1x2.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
     videoPlayer1x3.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
 
     videoPlayer2x1.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"
@@ -13,7 +13,7 @@ MoveGridPageForm {
     videoPlayer3x3.videoSource: "e:/projects/slowmodisplay/videos/1.mp4"*/
 
     Component.onCompleted: {
-        centralImage.source = settings.splashScreen();
+        /*centralImage.source = settings.splashScreen();
 
         videoPlayer1x1.backgroundImage = settings.splashScreen();
         videoPlayer1x2.backgroundImage = settings.splashScreen();
@@ -26,17 +26,17 @@ MoveGridPageForm {
         videoPlayer3x2.backgroundImage = settings.splashScreen();
         videoPlayer3x3.backgroundImage = settings.splashScreen();
 
-        videoRotator.addMediaPlayer(videoPlayer1x1);
-        videoRotator.addMediaPlayer(videoPlayer1x2);
-        videoRotator.addMediaPlayer(videoPlayer1x3);
+        videoGridViewer.addMediaPlayer(videoPlayer1x1);
+        videoGridViewer.addMediaPlayer(videoPlayer1x2);
+        videoGridViewer.addMediaPlayer(videoPlayer1x3);
 
-        videoRotator.addMediaPlayer(videoPlayer2x1);
-        videoRotator.addMediaPlayer(videoPlayer2x3);
+        videoGridViewer.addMediaPlayer(videoPlayer2x1);
+        videoGridViewer.addMediaPlayer(videoPlayer2x3);
 
-        videoRotator.addMediaPlayer(videoPlayer3x1);
-        videoRotator.addMediaPlayer(videoPlayer3x2);
-        videoRotator.addMediaPlayer(videoPlayer3x3);
+        videoGridViewer.addMediaPlayer(videoPlayer3x1);
+        videoGridViewer.addMediaPlayer(videoPlayer3x2);
+        videoGridViewer.addMediaPlayer(videoPlayer3x3);
 
-        videoRotator.init();
+        videoGridViewer.init();*/
     }
 }

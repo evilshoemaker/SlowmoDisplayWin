@@ -15,6 +15,7 @@ public slots:
     QString splashScreen();
     QString videoFolder();
     bool isDebug();
+    int interval();
 
 private:
     Settings(QObject *parent = nullptr);
@@ -24,6 +25,7 @@ private:
     const QString SPLASH_SCREEN = "splash_screen";
     const QString VIDEO_FOLDER = "video_folder";
     const QString IS_DEBUG = "debug";
+    const QString INTERVAL = "interval";
 };
 
 #endif // SETTINGS_H

@@ -1,32 +1,50 @@
-#ifndef FILESTORAGE_H
-#define FILESTORAGE_H
+#ifndef VIDEOROTATOR_H
+#define VIDEOROTATOR_H
 
 #include <QObject>
-#include <QQueue>
+#include <QTimer>
 
-#include "core/FileWatcher.h"
+#include <core/VideoGridViewer.h>
 
 class VideoRotator : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QObject* videoViewer READ videoViewer WRITE setVideoViewer NOTIFY videoViewerChanged)
+    Q_PROPERTY(int interval READ interval WRITE setInterval NOTIFY intervalChanged)
+    Q_PROPERTY(bool active READ active WRITE setActive)
+    Q_PROPERTY(VideoGridViewer* videoGrid READ videoGridViewer WRITE setVideoGridViewer)
+
 public:
-    explicit VideoRotator(const QString &videoFolder, QObject *parent = nullptr);
+    explicit VideoRotator(QObject *parent = nullptr);
+
+    QObject *videoViewer() const;
+    void setVideoViewer(QObject *videoViewer);
+
+    int interval();
+    void setInterval(int interval);
+
+    bool active();
+    void setActive(bool active);
+
+    VideoGridViewer *videoGridViewer() const;
+    void setVideoGridViewer(VideoGridViewer *fileWatcher);
 
 signals:
-
-public slots:
-    void addMediaPlayer(QObject *mp);
-    void init();
+    void videoViewerChanged();
+    void intervalChanged();
 
 private slots:
-    void onNewFile(const QString &fileName);
+    void onTimerTimeout();
+    void onPlaybackEnd();
 
 private:
-    bool isDebug_ = false;
+    VideoGridViewer *videoGridViewer_;
+    QObject *videoViewer_;
+    QTimer *timer_;
+    bool isActive_ = false;
+    int currentIndex_ = -1;
 
-    FileWatcher fileWatcher_;
-    QObjectList mediaPlayerList_;
-    QQueue<QObject *> mediaPlayerQueue_;
+    QString newFile();
 };
 
-#endif // FILESTORAGE_H
+#endif // VIDEOROTATOR_H

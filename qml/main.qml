@@ -1,5 +1,7 @@
-import QtQuick 2.11
-import QtQuick.Controls 2.4
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+
+//import esm 1.0
 
 import "pages"
 
@@ -26,10 +28,10 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
-    ViewPage {
+    /*ViewPage {
         id: viewPage
         anchors.fill: parent
-    }
+    }*/
 
     footer: TabBar {
         id: tabBar
@@ -38,7 +40,8 @@ ApplicationWindow {
         TabButton {
             text: qsTr("Page 1")
             onClicked: {
-                viewPage.play("e:/projects/slowmodisplay/videos/1.mp4")
+                //videoRotator.active = true;
+                //viewPage.play("e:/projects/slowmodisplay/videos/1.mp4")
                 //viewPage.state = "visible"
 
                 //viewPage.videoSource = "e:/projects/slowmodisplay/videos/1.mp4"
@@ -47,13 +50,17 @@ ApplicationWindow {
         TabButton {
             text: qsTr("Page 2")
             onClicked: {
-                viewPage.state = "hidden"
+                //videoRotator.active = false;
+                //viewPage.state = "hidden"
                 //viewPage.videoSource = "e:/projects/slowmodisplay/videos/2.mp4"
             }
         }
     }
 
-    Component.onCompleted: {
-
-    }
+    /*VideoRotator {
+        id: videoRotator
+        videoViewer: viewPage
+        interval: settings.interval()
+        videoGrid: videoGridViewer
+    }*/
 }

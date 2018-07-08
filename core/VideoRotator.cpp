@@ -1,45 +1,119 @@
 #include "VideoRotator.h"
 
+#include <QMetaMethod>
 #include <QDebug>
 
-#include "core/Settings.h"
-
-VideoRotator::VideoRotator(const QString &videoFolder, QObject *parent) :
-    QObject(parent)
+VideoRotator::VideoRotator(QObject *parent) :
+    QObject(parent),
+    timer_(new QTimer(this))
 {
-    fileWatcher_.addWatchPath(videoFolder);
-    connect(&fileWatcher_, &FileWatcher::newFile, this, &VideoRotator::onNewFile);
-    //connect(&fileWatcher_, &FileWatcher::deleteFile, this, &VideoRotator::onRemoveFile);
-
-    isDebug_ = Settings::instance()->isDebug();
+    connect(timer_, &QTimer::timeout, this, &VideoRotator::onTimerTimeout);
 }
 
-void VideoRotator::addMediaPlayer(QObject *mp)
+QObject *VideoRotator::videoViewer() const
 {
-    //mediaPlayerList_.append(mp);
-    mediaPlayerQueue_.enqueue(mp);
+    return videoViewer_;
 }
 
-void VideoRotator::init()
+void VideoRotator::setVideoViewer(QObject *videoViewer)
 {
-    QStringList files = fileWatcher_.files();
-    for (int i = 0; i < files.size(); i++)
+    if (videoViewer_ == videoViewer)
+        return;
+
+    videoViewer_ = videoViewer;
+
+    connect(videoViewer_, SIGNAL(playbackEnd()), this, SLOT(onPlaybackEnd()));
+
+    emit videoViewerChanged();
+}
+
+int VideoRotator::interval()
+{
+    return timer_->interval() / 1000;
+}
+
+void VideoRotator::setInterval(int interval)
+{
+    if ((timer_->interval() / 1000) == interval)
+        return;
+
+    timer_->setInterval(interval * 1000);
+    emit intervalChanged();
+}
+
+bool VideoRotator::active()
+{
+    return isActive_;
+}
+
+void VideoRotator::setActive(bool active)
+{
+    if (isActive_ == active)
+        return;
+
+    isActive_ = active;
+
+    if (isActive_ == true)
     {
-        onNewFile(files.at(i));
+        timer_->start();
+    }
+    else
+    {
+        timer_->stop();
+
+        if (videoViewer_ != nullptr)
+        {
+            QMetaObject::invokeMethod(videoViewer_, "stop", Qt::QueuedConnection);
+        }
     }
 }
 
-void VideoRotator::onNewFile(const QString &fileName)
+void VideoRotator::onTimerTimeout()
 {
-    if (isDebug_)
+    if (videoViewer_ != nullptr)
     {
-        qDebug() << "Added new file" << fileName;
+        QString filePath = newFile();
+        if (!filePath.isEmpty())
+        {
+            QMetaObject::invokeMethod(videoViewer_, "play", Qt::QueuedConnection, Q_ARG(QVariant, filePath));
+            timer_->stop();
+        }
     }
+}
 
-    if (!mediaPlayerQueue_.isEmpty())
+void VideoRotator::onPlaybackEnd()
+{
+    if (isActive_ == true)
     {
-        QObject *mp = mediaPlayerQueue_.dequeue();
-        mp->setProperty("videoSource", fileName);
-        mediaPlayerQueue_.enqueue(mp);
+        timer_->start();
     }
+}
+
+QString VideoRotator::newFile()
+{
+    if (videoGridViewer_ == nullptr)
+        return "";
+
+    currentIndex_++;
+    QStringList files = videoGridViewer_->files();
+    if (currentIndex_ < files.size())
+    {
+        return files.at(currentIndex_);
+    }
+    else if (!files.isEmpty())
+    {
+        currentIndex_ = 0;
+        return files.at(currentIndex_);
+    }
+    return "";
+}
+
+VideoGridViewer *VideoRotator::videoGridViewer() const
+{
+    return videoGridViewer_;
+}
+
+void VideoRotator::setVideoGridViewer(VideoGridViewer *videoGridViewer)
+{
+    videoGridViewer_ = videoGridViewer;
 }

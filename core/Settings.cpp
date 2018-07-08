@@ -27,6 +27,11 @@ bool Settings::isDebug()
     return settings_->value(IS_DEBUG, false).toBool();
 }
 
+int Settings::interval()
+{
+    return settings_->value(INTERVAL, 5).toInt();
+}
+
 Settings::Settings(QObject *parent) :
     QObject(parent),
     settings_(new QSettings(Variables::settingsFilePath(), QSettings::IniFormat))

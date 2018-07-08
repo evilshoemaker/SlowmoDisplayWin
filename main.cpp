@@ -6,7 +6,13 @@
 
 #include <core/Settings.h>
 //#include <core/FileWatcher.h>
+#include <core/VideoGridViewer.h>
 #include <core/VideoRotator.h>
+
+void registerType()
+{
+    qmlRegisterType<VideoRotator>("esm", 1, 0, "VideoRotator");
+}
 
 int main(int argc, char *argv[])
 {
@@ -14,11 +20,13 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    VideoRotator videoRotator(Settings::instance()->videoFolder());
+    registerType();
+
+    VideoGridViewer videoGridViewer(Settings::instance()->videoFolder());
 
     QQmlApplicationEngine engine;
 
-    engine.rootContext()->setContextProperty("videoRotator", &videoRotator);
+    engine.rootContext()->setContextProperty("videoGridViewer", &videoGridViewer);
     engine.rootContext()->setContextProperty("settings", Settings::instance());
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
