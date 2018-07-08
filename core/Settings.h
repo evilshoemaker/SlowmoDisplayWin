@@ -12,16 +12,18 @@ public:
 
 
 public slots:
-    QString screensaverPicture();
+    QString splashScreen();
     QString videoFolder();
+    bool isDebug();
 
 private:
     Settings(QObject *parent = nullptr);
 
     QSettings *settings_;
 
-    const QString SCREENSAVER_PICTURE = "screensaver_picture";
+    const QString SPLASH_SCREEN = "splash_screen";
     const QString VIDEO_FOLDER = "video_folder";
+    const QString IS_DEBUG = "debug";
 };
 
 #endif // SETTINGS_H

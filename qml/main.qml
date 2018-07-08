@@ -9,10 +9,10 @@ ApplicationWindow {
     height: 480
     title: qsTr("Slow")
 
-    SwipeView {
+    /*SwipeView {
         id: swipeView
         anchors.fill: parent
-        currentIndex: tabBar.currentIndex
+        //currentIndex: tabBar.currentIndex
 
         MoveGridPage {
 
@@ -20,17 +20,40 @@ ApplicationWindow {
 
         Page2Form {
         }
+    }*/
+
+    MoveGridPage {
+        anchors.fill: parent
     }
 
-    /*footer: TabBar {
+    ViewPage {
+        id: viewPage
+        anchors.fill: parent
+    }
+
+    footer: TabBar {
         id: tabBar
-        currentIndex: swipeView.currentIndex
+        //currentIndex: swipeView.currentIndex
 
         TabButton {
             text: qsTr("Page 1")
+            onClicked: {
+                viewPage.play("e:/projects/slowmodisplay/videos/1.mp4")
+                //viewPage.state = "visible"
+
+                //viewPage.videoSource = "e:/projects/slowmodisplay/videos/1.mp4"
+            }
         }
         TabButton {
             text: qsTr("Page 2")
+            onClicked: {
+                viewPage.state = "hidden"
+                //viewPage.videoSource = "e:/projects/slowmodisplay/videos/2.mp4"
+            }
         }
-    }*/
+    }
+
+    Component.onCompleted: {
+
+    }
 }

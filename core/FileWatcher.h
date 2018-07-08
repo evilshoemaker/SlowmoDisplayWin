@@ -12,7 +12,8 @@ public:
     explicit FileWatcher(QObject *parent = nullptr);
 
 public slots:
-    void addWatchPath(QString path);
+    void addWatchPath(const QString &path);
+    QStringList files();
 
 signals:
     void newFile(const QString &fileName);
@@ -25,6 +26,7 @@ private slots:
 private:
     QMap<QString, QStringList> currContents_;
     QFileSystemWatcher sysWatcher_;
+    void directoryCheck(const QString &path);
 };
 
 #endif // FILEWATCHER_H

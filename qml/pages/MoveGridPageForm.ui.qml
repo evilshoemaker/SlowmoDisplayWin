@@ -18,6 +18,8 @@ Item {
     property alias videoPlayer3x2: videoPlayer3x2
     property alias videoPlayer3x3: videoPlayer3x3
 
+    property alias centralImage: centralImage
+
     GridLayout {
         id: grid
         columnSpacing: 0
@@ -62,15 +64,6 @@ Item {
             Layout.column: 1
         }
 
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            Layout.row: 2
-            Layout.column: 2
-
-            color: 'blue'
-        }
-
         VideoPlayer {
             id: videoPlayer2x3
             clip: true
@@ -105,6 +98,20 @@ Item {
             Layout.fillWidth: true
             Layout.row: 3
             Layout.column: 3
+        }
+
+        Item {
+            clip: true
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.row: 2
+            Layout.column: 2
+
+            Image {
+                id: centralImage
+                fillMode: Image.PreserveAspectCrop
+                anchors.fill: parent
+            }
         }
     }
 }

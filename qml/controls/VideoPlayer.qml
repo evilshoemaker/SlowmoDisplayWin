@@ -7,6 +7,7 @@ Item {
     id: root
 
     property alias videoSource: player.source
+    property alias backgroundImage: image.source
 
     //implicitWidth: 600
     //implicitHeight: 380
@@ -16,12 +17,19 @@ Item {
         color: "#000"
     }
 
+    Image {
+        id: image
+        source: root.backgroundImage
+        anchors.fill: parent
+        fillMode: Image.PreserveAspectCrop
+    }
+
     MediaPlayer {
         id: player
         source: root.videoSource
         autoLoad: true
         autoPlay: true
-        volume: 0
+        muted: true
         loops: MediaPlayer.Infinite
 
         /*onPlaying: {
@@ -50,6 +58,7 @@ Item {
     }
 
     VideoOutput {
+        //id: videoOutput
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
