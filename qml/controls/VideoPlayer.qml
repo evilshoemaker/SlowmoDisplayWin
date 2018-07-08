@@ -27,10 +27,10 @@ Item {
     MediaPlayer {
         id: player
         source: root.videoSource
-        autoLoad: true
+        //autoLoad: true
         autoPlay: true
         muted: true
-        loops: MediaPlayer.Infinite
+        //loops: MediaPlayer.Infinite
 
         /*onPlaying: {
             root.playing = true;
